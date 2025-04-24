@@ -4,7 +4,9 @@
     "outDir": "./dist",
     "baseUrl": "./",
     "paths": {
-      "@app/api-gateway/*": ["src/*"]
+      "@app/api-gateway/*": ["src/*"],
+      "@app/shared": ["../../libs/shared/src"],
+      "@app/shared/*": ["../../libs/shared/src/*"]
     }
   },
   "include": ["src/**/*"],
