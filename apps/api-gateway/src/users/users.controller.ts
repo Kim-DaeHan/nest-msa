@@ -1,42 +1,33 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Inject } from '@nestjs/common';
 import { Client, ClientKafka, Transport } from '@nestjs/microservices';
 import { CreateUserDto, UpdateUserDto } from '@app/shared';
 
 @Controller('users')
 export class UsersController {
-  @Client({
-    transport: Transport.KAFKA,
-    options: {
-      client: {
-        brokers: ['localhost:9092'],
-        clientId: 'api-gateway',
-      },
-    },
-  })
-  private readonly client: ClientKafka;
+  constructor(@Inject('USER_SERVICE') private readonly userClient: ClientKafka) {}
 
   @Post()
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.client.send('createUser', createUserDto);
+  async createUser(@Body() createUserDto: CreateUserDto) {
+    return this.userClient.send('create_user', createUserDto);
   }
 
   @Get()
   findAll() {
-    return this.client.send('findAllUsers', {});
+    return this.userClient.send('findAllUsers', {});
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.client.send('findOneUser', +id);
+    return this.userClient.send('findOneUser', +id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.client.send('updateUser', { id: +id, updateUserDto });
+    return this.userClient.send('updateUser', { id: +id, updateUserDto });
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.client.send('removeUser', +id);
+    return this.userClient.send('removeUser', +id);
   }
 }
