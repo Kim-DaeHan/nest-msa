@@ -4,6 +4,7 @@ import { CreateUserDto, UpdateUserDto } from '@app/shared';
 @Injectable()
 export class UsersService {
   create(createUserDto: CreateUserDto) {
+    console.log('createUserDto: ', createUserDto);
     return 'This action adds a new user';
   }
 
