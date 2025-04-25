@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { UsersController } from './users.controller';
+import { ProductsController } from './products.controller';
 
 @Module({
   imports: [
     ClientsModule.registerAsync([
       {
-        name: 'USER_SERVICE',
+        name: 'PRODUCT_SERVICE',
         imports: [ConfigModule],
         useFactory: (configService: ConfigService) => ({
           transport: Transport.KAFKA,
@@ -29,6 +29,6 @@ import { UsersController } from './users.controller';
       },
     ]),
   ],
-  controllers: [UsersController],
+  controllers: [ProductsController],
 })
-export class UsersModule {}
+export class ProductsModule {}

@@ -8,8 +8,8 @@ async function bootstrap() {
   const configService = app.get(ConfigService);
 
   const kafkaBroker = configService.get<string>('KAFKA_BROKER', 'localhost:9092');
-  const clientId = configService.get<string>('KAFKA_CLIENT_ID', 'user-service');
-  const consumerGroup = configService.get<string>('KAFKA_CONSUMER_GROUP', 'user-consumer');
+  const clientId = configService.get<string>('KAFKA_CLIENT_ID', 'product-service');
+  const consumerGroup = configService.get<string>('KAFKA_CONSUMER_GROUP', 'product-consumer');
 
   app.connectMicroservice<MicroserviceOptions>({
     transport: Transport.KAFKA,
@@ -29,6 +29,6 @@ async function bootstrap() {
   });
 
   await app.startAllMicroservices();
-  await app.listen(3001);
+  await app.listen(3002);
 }
 bootstrap();
