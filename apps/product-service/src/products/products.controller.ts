@@ -1,7 +1,8 @@
+import { CreateProductDto, UpdateProductDto } from '@app/shared';
 import { Controller } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
+
 import { ProductsService } from './products.service';
-import { CreateProductDto, UpdateProductDto } from '@app/shared';
 
 @Controller()
 export class ProductsController {

@@ -1,3 +1,4 @@
+/* eslint-env node */
 const eslint = require('@eslint/js');
 const tseslint = require('@typescript-eslint/eslint-plugin');
 const tseslintParser = require('@typescript-eslint/parser');
@@ -20,6 +21,7 @@ module.exports = [
       globals: {
         process: 'readonly',
       },
+      env: { node: true },
     },
     rules: {
       // TypeScript 관련 규칙
