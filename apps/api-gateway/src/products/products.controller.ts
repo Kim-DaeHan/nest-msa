@@ -1,6 +1,6 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Inject } from '@nestjs/common';
-import { Client, ClientKafka, Transport } from '@nestjs/microservices';
 import { CreateProductDto, UpdateProductDto } from '@app/shared';
+import { Body, Controller, Delete, Get, Inject, Param, Patch, Post } from '@nestjs/common';
+import { Client, ClientKafka, Transport } from '@nestjs/microservices';
 
 @Controller('products')
 export class ProductsController {
